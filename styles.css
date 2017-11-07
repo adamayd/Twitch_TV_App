@@ -7,5 +7,21 @@ body {
 .main {
     background-color: #555;
     color: #fff;
+    width: 350px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.status ul {
+    padding: 0;
+}
+
+.status ul li {
+    padding: 0 30px;
+    display: inline;
 }
 
