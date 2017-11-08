@@ -1,19 +1,31 @@
-body {
-    background-color: #ddd;
+html {
+    box-sizing: border-box;
+    background: url(IMG_1085.JPG) center no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 .main {
-    background-color: #555;
-    color: #fff;
-    width: 350px;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    background-color: rgba(255,255,255,0.95);
+    box-shadow: 0 0 0 10px rgba(0,0,0,0.3);
+    max-width: 350px;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    font-weight: 200;
 }
 
 .status ul {
@@ -21,7 +33,23 @@ body {
 }
 
 .status ul li {
-    padding: 0 30px;
+    padding: 10px;
     display: inline;
+    outline: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.users {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+.users li {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 10px 0;
+    font-weight: 100;
+    display: flex;
 }
 
