@@ -28,15 +28,27 @@ h1 {
     font-weight: 200;
 }
 
-.status ul {
+.statusBtns ul {
     padding: 0;
 }
 
-.status ul li {
+.statusBtns ul li {
     padding: 10px;
     display: inline;
     outline: 0;
     border: 1px solid rgba(0,0,0,0.1);
+}
+
+#statusAll.active {
+    background-color: yellow;
+}
+
+#statusOn.active {
+    background-color: green;
+}
+
+#statusOff.active {
+    background-color: red;
 }
 
 .users {

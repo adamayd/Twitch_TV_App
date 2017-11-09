@@ -1,3 +1,10 @@
+const statusAll = document.getElementById('statusAll');
+const statusOn = document.getElementById('statusOn');
+const statusOff = document.getElementById('statusOff');
+const statusList = document.querySelectorAll('.status');
+
+console.log(statusList);
+
 // on document load make api call
 
 // fun fun
@@ -6,18 +13,25 @@
 
 // more api fun
 
+
+
+// TODO: create toggle indicator function for status buttons
+
+
+
+
 // all users button event listener
-document.getElementById('statusAll').addEventListener('click', function() {
-  document.getElementById('statusAll').style.backgroundColor = 'yellow';
-  document.getElementById('statusAll').style.color = '#000';
-  document.getElementById('statusOnline').style.background = '#555';
-  document.getElementById('statusOnline').style.color = '#fff';
-  document.getElementById('statusOffline').style.background = '#555';
-  document.getElementById('statusOffline').style.color = '#fff';
+statusAll.addEventListener('click', function() {
+  // document.getElementById('statusAll').style.backgroundColor = 'yellow';
+  // document.getElementById('statusAll').style.color = '#000';
+  // document.getElementById('statusOnline').style.background = '#555';
+  // document.getElementById('statusOnline').style.color = '#fff';
+  // document.getElementById('statusOffline').style.background = '#555';
+  // document.getElementById('statusOffline').style.color = '#fff';
 });
 
 // online users button event listener
-document.getElementById('statusOnline').addEventListener('click', function() {
+document.getElementById('statusOn').addEventListener('click', function() {
   document.getElementById('statusAll').style.backgroundColor = '#555';
   document.getElementById('statusAll').style.color = '#fff';
   document.getElementById('statusOnline').style.background = 'green';
@@ -27,7 +41,7 @@ document.getElementById('statusOnline').addEventListener('click', function() {
 });
 
 // offline users button event listener
-document.getElementById('statusOffline').addEventListener('click', function() {
+document.getElementById('statusOff').addEventListener('click', function() {
   document.getElementById('statusAll').style.backgroundColor = '#555';
   document.getElementById('statusAll').style.color = '#fff';
   document.getElementById('statusOnline').style.background = '#555';
