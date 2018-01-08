@@ -1,18 +1,35 @@
-const statusAll = document.getElementById('statusAll');
-const statusOn = document.getElementById('statusOn');
-const statusOff = document.getElementById('statusOff');
+const searchBox = document.getElementById('searchBox');
+const userList = document.querySelector('.user__list');
 const statusList = document.querySelectorAll('.status__item');
 
-// on document load make api call
+const users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+let setStatus = "all";
 
-// fun fun
+function matchUsers(userToMatch, userList) {
+  return userList.filter((user) => {
+    const regex = new RegExp(userToMatch, 'gi');
+    return user.match(regex);
+  });
+}
 
-// twitch api call
+function displayUsers() {
+  const matchedUsers = matchUsers(this.value, users);
+  const html = matchedUsers.map((user) => {
+    return `
+      <li class="user__item">
+        <span>${user}</span>
+      </li>
+    `;
+  }).join('');
+  userList.innerHTML = html;
+}
 
-// more api fun
+function statusActive() {
+  setStatus = this.value;
+}
 
-// TODO: create toggle indicator function for status buttons
 
-// all users button event listener
-
-// search the current users listed
+displayUsers();
+searchBox.addEventListener('change', displayUsers);
+searchBox.addEventListener('keyup', displayUsers);
+statusList.forEach((status) => status.addEventListener('click', statusActive));

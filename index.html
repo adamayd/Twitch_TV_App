@@ -11,13 +11,16 @@
     <div class="title__area">
       <h1 class="title">Twitch TV App</h1>
     </div>
-    <div class="status__area">
-        <ul class="status__list">
-            <li class="status__item" id="statusAll">All</li>
-            <li class="status__item" id="statusOnline">Online</li>
-            <li class="status__item" id="statusOffline">Offline</li>
-        </ul>
-    </div>
+    <form class="form status__form">
+        <div class="status__list">
+            <input type="radio" class="status__item" id="statusAll" name="status" value="all" checked />
+            <label class="status__item-label" for="statusAll">All</label>
+            <input type="radio" class="status__item" id="statusOnline" name="status" value="online" />
+            <label class="status__item-label" for="statusOnline">Online</label>
+            <input type="radio" class="status__item" id="statusOffline" name="status" value="offline" />
+            <label class="status__item-label" for="statusOffline">Offline</label>
+        </div>
+    </form>
     <div class="search__area">
         <input class="search__box" type="search" id="searchBox">
     </div>

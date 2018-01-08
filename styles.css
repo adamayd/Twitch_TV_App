@@ -27,15 +27,36 @@ body {
 }
 
 .status__list {
-    list-style: none;
-    padding-left: 0px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    padding: 40px;
+    overflow: hidden;
 }
 
-.status__item:hover {
-    text-decoration: underline;
+.status__item {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    width: 1px;
+    border: 1px red solid;
+    overflow: hidden;
+}
+
+.status__item-label {
+    /* float: left; */
+    display: inline-block;
+    width: 50px;
+    background-color: #e4e4e4;
+    font-size: 14px;
+    font-weight: normal;
+    /* text-align: center; */
+    padding: 6px 14px;
+}
+
+.status__item-label:hover {
+    cursor: pointer;
+}
+
+.status__item:checked + .status__item-label {
+    background-color:#a5dc86;
 }
 
 .search__box {
