@@ -1,9 +1,31 @@
+const apiURL = 'https://wind-bow.glitch.me/twitch-api/';
+var xhr;
 const searchBox = document.getElementById('searchBox');
 const userList = document.querySelector('.user__list');
 const statusList = document.querySelectorAll('.status__item');
 
 const users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 let setStatus = "all";
+
+function makeRequest() {
+  console.log('making request');
+  xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let response = JSON.parse(xhr.responseText);
+      showResults(response);
+    }
+  };
+
+  xhr.open('GET', apiURL + 'users/freecodecamp', true);
+  xhr.send();
+
+  showResults = (response) => {
+    console.log(response._id);
+  };
+
+}
 
 function matchUsers(userToMatch, userList) {
   return userList.filter((user) => {
@@ -30,6 +52,7 @@ function statusActive() {
 
 
 displayUsers();
+makeRequest();
 searchBox.addEventListener('change', displayUsers);
 searchBox.addEventListener('keyup', displayUsers);
 statusList.forEach((status) => status.addEventListener('click', statusActive));
