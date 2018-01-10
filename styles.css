@@ -28,7 +28,8 @@ body {
 
 .status__list {
     padding: 10px;
-    margin-bottom: 10px;
+    padding-left: 25px;
+    margin: 10px auto;
     overflow: hidden;
 }
 
@@ -90,8 +91,9 @@ body {
 }
 
 .user__logo {
-    max-height: 45px;
-    max-width: 45px;
+    max-height: 30px;
+    max-width: 30px;
+    margin-right: 10px;
     border-radius: 25%;
 }
 

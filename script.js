@@ -1,14 +1,16 @@
 const apiURL = 'https://wind-bow.glitch.me/twitch-api/';
 var xhr;
+var userObj = {};
 const searchBox = document.getElementById('searchBox');
 const userList = document.querySelector('.user__list');
 const statusList = document.querySelectorAll('.status__item');
 
 const users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+const usersNew = ["ESL_SC2"];
 let setStatus = "all";
 
-function makeRequest() {
-  console.log('making request');
+function makeRequest(user, idx) {
+  console.log('making request for ' + user);
   xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = () => {
@@ -18,12 +20,12 @@ function makeRequest() {
     }
   };
 
-  xhr.open('GET', apiURL + 'channels/freecodecamp', true);
+  xhr.open('GET', apiURL + 'channels/' + user, false);
   xhr.send();
 
-  showResults = (response) => {
+  function showResults(response) {
     console.log(response._id);
-    const userItem = document.querySelector('.user__item:nth-of-type(4)');
+    const userItem = document.querySelector('.user__item:nth-of-type(' + (idx + 1) + ')');
     const html = `<img src=${response.logo} class="user__logo" alt="user logo" /><span>${response.display_name}</span>`;
     userItem.innerHTML = html;
   };
@@ -55,7 +57,7 @@ function statusActive() {
 
 
 displayUsers();
-makeRequest();
+users.forEach(makeRequest);
 searchBox.addEventListener('change', displayUsers);
 searchBox.addEventListener('keyup', displayUsers);
 statusList.forEach((status) => status.addEventListener('click', statusActive));
