@@ -88,3 +88,10 @@ body {
 .user__item {
     padding: 10px;
 }
+
+.user__logo {
+    max-height: 45px;
+    max-width: 45px;
+    border-radius: 25%;
+}
+

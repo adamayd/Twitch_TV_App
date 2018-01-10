@@ -18,11 +18,14 @@ function makeRequest() {
     }
   };
 
-  xhr.open('GET', apiURL + 'users/freecodecamp', true);
+  xhr.open('GET', apiURL + 'channels/freecodecamp', true);
   xhr.send();
 
   showResults = (response) => {
     console.log(response._id);
+    const userItem = document.querySelector('.user__item:nth-of-type(4)');
+    const html = `<img src=${response.logo} class="user__logo" alt="user logo" /><span>${response.display_name}</span>`;
+    userItem.innerHTML = html;
   };
 
 }
