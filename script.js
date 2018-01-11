@@ -10,7 +10,6 @@ const usersNew = ["ESL_SC2"];
 let setStatus = "all";
 
 function dataRequest(user, idx) {
-  console.log('making data request for ' + user);
   xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = () => {
@@ -30,7 +29,6 @@ function dataRequest(user, idx) {
 }
 
 function statusRequest(user, idx) {
-  console.log('making status request for ' + user);
   xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = () => {
@@ -45,8 +43,6 @@ function statusRequest(user, idx) {
 
   function storeResults(response) {
     userData[user].stream = (response.stream) ? response.stream.game : "offline"
-//    userData[user].display_name = response.display_name;
-//    userData[user].logo = response.logo;
   };
 }
 
@@ -57,9 +53,25 @@ function matchUsers(userToMatch, userList) {
   });
 }
 
+function statusUsers(userList) {
+  if (setStatus === 'offline') {
+    statusedUsers = userList.filter(user => {
+      return userData[user].stream === 'offline'
+    })
+  } else if (setStatus === 'online') {
+    statusedUsers = userList.filter(user => {
+      return userData[user].stream !== 'offline'
+    })
+  } else {
+    statusedUsers = userList;
+  }
+  return statusedUsers;
+}
+
 function displayUsers() {
   const matchedUsers = matchUsers(this.value, users);
-  const html = matchedUsers.map((user) => {
+  const statusedUsers = statusUsers(matchedUsers);
+  const html = statusedUsers.map((user) => {
     return `
       <li class="user__item">
         <img src=${userData[user].logo} class="user__logo" alt="user logo" />
@@ -73,6 +85,7 @@ function displayUsers() {
 
 function statusActive() {
   setStatus = this.value;
+  displayUsers();
 }
 
 
