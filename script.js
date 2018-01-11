@@ -1,6 +1,6 @@
 const apiURL = 'https://wind-bow.glitch.me/twitch-api/';
 var xhr;
-var userObj = {};
+var userData = {};
 const searchBox = document.getElementById('searchBox');
 const userList = document.querySelector('.user__list');
 const statusList = document.querySelectorAll('.status__item');
@@ -16,18 +16,16 @@ function makeRequest(user, idx) {
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
       let response = JSON.parse(xhr.responseText);
-      showResults(response);
+      storeResults(response);
     }
   };
 
   xhr.open('GET', apiURL + 'channels/' + user, false);
   xhr.send();
 
-  function showResults(response) {
-    console.log(response._id);
-    const userItem = document.querySelector('.user__item:nth-of-type(' + (idx + 1) + ')');
-    const html = `<img src=${response.logo} class="user__logo" alt="user logo" /><span>${response.display_name}</span>`;
-    userItem.innerHTML = html;
+  function storeResults(response) {
+    userData[user].display_name = response.display_name;
+    userData[user].logo = response.logo;
   };
 
 }
@@ -49,6 +47,12 @@ function displayUsers() {
     `;
   }).join('');
   userList.innerHTML = html;
+
+  
+//    console.log(response._id);
+//    const userItem = document.querySelector('.user__item:nth-of-type(' + (idx + 1) + ')');
+//    const html = `<img src=${response.logo} class="user__logo" alt="user logo" /><span>${response.display_name}</span>`;
+//    userItem.innerHTML = html;
 }
 
 function statusActive() {
@@ -57,7 +61,10 @@ function statusActive() {
 
 
 displayUsers();
+users.forEach(user => userData[user] = {});
+console.log(userData);
 users.forEach(makeRequest);
+console.log(userData);
 searchBox.addEventListener('change', displayUsers);
 searchBox.addEventListener('keyup', displayUsers);
 statusList.forEach((status) => status.addEventListener('click', statusActive));
