@@ -9,8 +9,8 @@ const users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck",
 const usersNew = ["ESL_SC2"];
 let setStatus = "all";
 
-function makeRequest(user, idx) {
-  console.log('making request for ' + user);
+function dataRequest(user, idx) {
+  console.log('making data request for ' + user);
   xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = () => {
@@ -27,7 +27,27 @@ function makeRequest(user, idx) {
     userData[user].display_name = response.display_name;
     userData[user].logo = response.logo;
   };
+}
 
+function statusRequest(user, idx) {
+  console.log('making status request for ' + user);
+  xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let response = JSON.parse(xhr.responseText);
+      storeResults(response);
+    }
+  };
+
+  xhr.open('GET', apiURL + 'streams/' + user, false);
+  xhr.send();
+
+  function storeResults(response) {
+    userData[user].stream = (response.stream) ? response.stream.game : "offline"
+//    userData[user].display_name = response.display_name;
+//    userData[user].logo = response.logo;
+  };
 }
 
 function matchUsers(userToMatch, userList) {
@@ -42,17 +62,13 @@ function displayUsers() {
   const html = matchedUsers.map((user) => {
     return `
       <li class="user__item">
-        <span>${user}</span>
+        <img src=${userData[user].logo} class="user__logo" alt="user logo" />
+        <span>${userData[user].display_name}</span>
+        <span>${userData[user].stream}</span>
       </li>
     `;
   }).join('');
   userList.innerHTML = html;
-
-  
-//    console.log(response._id);
-//    const userItem = document.querySelector('.user__item:nth-of-type(' + (idx + 1) + ')');
-//    const html = `<img src=${response.logo} class="user__logo" alt="user logo" /><span>${response.display_name}</span>`;
-//    userItem.innerHTML = html;
 }
 
 function statusActive() {
@@ -60,11 +76,12 @@ function statusActive() {
 }
 
 
-displayUsers();
 users.forEach(user => userData[user] = {});
-console.log(userData);
-users.forEach(makeRequest);
-console.log(userData);
+//console.log(userData);
+users.forEach(dataRequest);
+users.forEach(statusRequest);
+//console.log(userData);
+displayUsers();
 searchBox.addEventListener('change', displayUsers);
 searchBox.addEventListener('keyup', displayUsers);
 statusList.forEach((status) => status.addEventListener('click', statusActive));
