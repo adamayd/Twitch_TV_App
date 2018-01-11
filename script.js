@@ -25,6 +25,7 @@ function dataRequest(user, idx) {
   function storeResults(response) {
     userData[user].display_name = response.display_name;
     userData[user].logo = response.logo;
+    userData[user].url = response.url;
   };
 }
 
@@ -74,9 +75,11 @@ function displayUsers() {
   const html = statusedUsers.map((user) => {
     return `
       <li class="user__item">
-        <img src=${userData[user].logo} class="user__logo" alt="user logo" />
-        <span>${userData[user].display_name}</span>
-        <span>${userData[user].stream}</span>
+        <a href=${userData[user].url} target="_blank">
+          <img src=${userData[user].logo} class="user__logo" alt="user logo" />
+          <span>${userData[user].display_name}</span>
+          <span>${userData[user].stream}</span>
+        </a>
       </li>
     `;
   }).join('');
