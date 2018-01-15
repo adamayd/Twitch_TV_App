@@ -75,10 +75,12 @@ function displayUsers() {
   const html = statusedUsers.map((user) => {
     return `
       <li class="user__item">
-        <a href=${userData[user].url} target="_blank">
+        <a href=${userData[user].url} class="user__link" target="_blank">
           <img src=${userData[user].logo} class="user__logo" alt="user logo" />
-          <span>${userData[user].display_name}</span>
-          <span>${userData[user].stream}</span>
+          <div class="user__info">
+            <span class="user__name">${userData[user].display_name}</span>
+            <p class="user__stream">${userData[user].stream}</p>
+          </div>
         </a>
       </li>
     `;
@@ -93,10 +95,8 @@ function statusActive() {
 
 
 users.forEach(user => userData[user] = {});
-//console.log(userData);
 users.forEach(dataRequest);
 users.forEach(statusRequest);
-//console.log(userData);
 displayUsers();
 searchBox.addEventListener('change', displayUsers);
 searchBox.addEventListener('keyup', displayUsers);
