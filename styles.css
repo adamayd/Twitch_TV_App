@@ -18,6 +18,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .main {
@@ -128,6 +129,29 @@ body {
     color: gray;
     font-size: 0.75em;
     margin: 0;
+}
+
+.footer__area {
+    min-width: 350px;
+    font-family: "Orbitron";
+    font-size: .85em;
+    color: #6441A4;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.footer__links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: #6441A4;
+}
+
+.footer__label {
+    font-size: .8em;
 }
 
 @media screen and (max-width: 400px) {
